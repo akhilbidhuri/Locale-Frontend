@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
-
-function App() {
+import FileUp from './components/fileupload';
+import {Column} from 'simple-flexbox';
+import Result from './components/results';
+import { connect } from 'react-redux';
+import Loader from './components/loader';
+class App extends Component{
+render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Column horizontal="center">
+      <h1 className='heading'>Locale.ai</h1>
+      <FileUp/>
+      {this.props.request &&
+      <div style={{marginTop:'3%'}}>
+        <Loader/>
+      </div>
+      }
+      {this.props.result.length>0 && 
+      <Result result={this.props.result}/>
+      }
+      </Column>
     </div>
   );
 }
-
-export default App;
+}
+const mapStateToProps = state => {
+  return state
+}
+export default connect(mapStateToProps)(App);

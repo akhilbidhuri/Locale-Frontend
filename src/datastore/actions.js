@@ -1,0 +1,2 @@
+export const RESULT_RECIEVED = 'RESULT_RECIEVED'
+export const REQUEST = 'REQUEST'
